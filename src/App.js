@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useAuthContext } from "./shared/context/AuthContext";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Menu from "./pages/Menu";
+import Order from "./pages/Order";
+import ViewOrder from "./pages/ViewOrder";
+import Contact from "./pages/Contact";
+import Profile from "./pages/Profile";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+
+import TechStackPage from "./pages/TechStackPage";
 
 function App() {
+  const { user } = useAuthContext();
+  console.log("User", user);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/viewOrder" element={<ViewOrder />} />
+        <Route path="/techStackPage" element={<TechStackPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
